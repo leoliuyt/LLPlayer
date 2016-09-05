@@ -14,14 +14,12 @@ typedef NS_ENUM(NSUInteger, ELayerVideoGravityType) {
     ELayerVideoGravityTypeResizeAspect
 };
 
-//NSString * const AVLayerVideoGravityResize;
-////        NSString * const AVLayerVideoGravityResizeAspect; //default
-////        NSString * const AVLayerVideoGravityResizeAspectFill;
-//_playerVC.videoGravity = AVLayerVideoGravityResizeAspect;
 @interface LLPlayerViewController : UIViewController
 
 @property (nonatomic, strong) AVPlayer *player;
 
 @property (nonatomic, assign) ELayerVideoGravityType videoGravityType;
+
+@property (nonatomic, assign) BOOL showsPlaybackControls;
 
 @end

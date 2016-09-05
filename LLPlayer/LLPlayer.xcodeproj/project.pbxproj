@@ -18,6 +18,8 @@
 		6B79E9E61D7D4B2A00C578D9 /* moments.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6B79E9E51D7D4B2A00C578D9 /* moments.mp4 */; };
 		6B79E9E91D7D560100C578D9 /* LLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9E81D7D560100C578D9 /* LLPlayerView.m */; };
 		6B79E9EC1D7D597800C578D9 /* LLPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9EB1D7D597800C578D9 /* LLPlayerViewController.m */; };
+		6B79E9F01D7D72E800C578D9 /* LLPlaybackControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9EF1D7D72E800C578D9 /* LLPlaybackControlView.m */; };
+		6B79E9F21D7D7D7100C578D9 /* LLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B79E9F11D7D7D7100C578D9 /* LLPlayer.bundle */; };
 		D1D99152FFE0ADCF685D4042 /* libPods-LLPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A945B24D31E29CFEACACC2F /* libPods-LLPlayer.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,9 @@
 		6B79E9EA1D7D597800C578D9 /* LLPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPlayerViewController.h; sourceTree = "<group>"; };
 		6B79E9EB1D7D597800C578D9 /* LLPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPlayerViewController.m; sourceTree = "<group>"; };
 		6B79E9ED1D7D61EC00C578D9 /* LLPlayerPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPlayerPrefixHeader.pch; sourceTree = "<group>"; };
+		6B79E9EE1D7D72E800C578D9 /* LLPlaybackControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPlaybackControlView.h; sourceTree = "<group>"; };
+		6B79E9EF1D7D72E800C578D9 /* LLPlaybackControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPlaybackControlView.m; sourceTree = "<group>"; };
+		6B79E9F11D7D7D7100C578D9 /* LLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LLPlayer.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +136,11 @@
 				6B79E9B61D7D488200C578D9 /* AppDelegate.m */,
 				6B79E9E71D7D560100C578D9 /* LLPlayerView.h */,
 				6B79E9E81D7D560100C578D9 /* LLPlayerView.m */,
+				6B79E9EE1D7D72E800C578D9 /* LLPlaybackControlView.h */,
+				6B79E9EF1D7D72E800C578D9 /* LLPlaybackControlView.m */,
 				6B79E9EA1D7D597800C578D9 /* LLPlayerViewController.h */,
 				6B79E9EB1D7D597800C578D9 /* LLPlayerViewController.m */,
+				6B79E9F11D7D7D7100C578D9 /* LLPlayer.bundle */,
 				6B79E9B81D7D488200C578D9 /* ViewController.h */,
 				6B79E9B91D7D488200C578D9 /* ViewController.m */,
 				6B79E9BB1D7D488200C578D9 /* Main.storyboard */,
@@ -289,6 +297,7 @@
 				6B79E9E61D7D4B2A00C578D9 /* moments.mp4 in Resources */,
 				6B79E9BF1D7D488200C578D9 /* Assets.xcassets in Resources */,
 				6B79E9BD1D7D488200C578D9 /* Main.storyboard in Resources */,
+				6B79E9F21D7D7D7100C578D9 /* LLPlayer.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +375,7 @@
 				6B79E9E91D7D560100C578D9 /* LLPlayerView.m in Sources */,
 				6B79E9B71D7D488200C578D9 /* AppDelegate.m in Sources */,
 				6B79E9B41D7D488200C578D9 /* main.m in Sources */,
+				6B79E9F01D7D72E800C578D9 /* LLPlaybackControlView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
