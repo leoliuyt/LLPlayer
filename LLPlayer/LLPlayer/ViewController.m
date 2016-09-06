@@ -47,8 +47,13 @@
 
 - (void)playLLPlayerVCADD
 {
+//    NSURL *url = [NSURL URLWithString:@"http://cdn.ghs-tv.readtv.cn/video/12ac13b476496f5d308478f090ccf7c9/stream.m3u8"];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"];
+//    AVPlayer *player = [AVPlayer playerWithURL:url];
+//    _llPlayerVC.player = player;
+//    _llPlayerVC.contentURL = url;
     self.llPlayerVC.view.frame = CGRectMake(0, 64, 320, 400);
-    self.llPlayerVC.videoGravityType = ELayerVideoGravityTypeResize;
+    self.llPlayerVC.videoGravityType = ELayerVideoGravityTypeResizeAspectFill;
     [self.view addSubview:self.llPlayerVC.view];
     [self.llPlayerVC.view makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
@@ -112,8 +117,12 @@
 {
     if(!_llPlayerVC){
         _llPlayerVC = [[LLPlayerViewController alloc] init];
-        AVPlayer *player = [AVPlayer playerWithURL:[[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"]];
-        _llPlayerVC.player = player;
+//        AVPlayer *player = [AVPlayer playerWithURL:[[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"]];
+//        NSURL *url = [NSURL URLWithString:@"http://cdn.ghs-tv.readtv.cn/video/12ac13b476496f5d308478f090ccf7c9/stream.m3u8"];
+        NSURL *url = [NSURL URLWithString:@"http://pl.youku.com/playlist/m3u8?vid=XMTcwNDE3NTgyOA==&type=mp4&ts=1472523895&keyframe=0&ep=dSaTGEyPVcYH7SbfjD8bZX2zJ34IXJZ3kkzC%252F6YXA8VAH6HA6DPcqJ6zTPs%253D&sid=7472523878504122aac97&token=3324&ctype=12&ev=1&oip=2937696939"];
+//        AVPlayer *player = [AVPlayer playerWithURL:url];
+//        _llPlayerVC.player = player;
+        _llPlayerVC.contentURL = url;
     }
     return _llPlayerVC;
 }
