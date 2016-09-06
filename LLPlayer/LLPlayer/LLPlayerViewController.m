@@ -24,6 +24,13 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 
 @property (nonatomic, strong) id playbackTimeObserver;
 
+/**
+ *  跳到time处播放
+ *  @param seekTime这个时刻，这个时间点
+ */
+
+@property (nonatomic, assign) double  seekTime;
+
 @end
 
 @implementation LLPlayerViewController
@@ -31,6 +38,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.playerView];
+    self.seekTime = 0.0;
     [self.playerView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
@@ -48,6 +56,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 
 - (void)dealloc
 {
+    self.seekTime = 0;
     [self removeKVOObserver];
 }
 
@@ -118,6 +127,37 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     }];
 }
 
+///获取视频长度
+- (double)duration{
+    AVPlayerItem *playerItem = self.player.currentItem;
+    if (playerItem.status == AVPlayerItemStatusReadyToPlay){
+        return CMTimeGetSeconds([playerItem duration]);
+    }
+    else{
+        return 0.f;
+    }
+}
+/**
+ *  跳到time处播放
+ *  @param seekTime这个时刻，这个时间点
+ */
+- (void)seekToTimeToPlay:(double)time{
+    if (self.player&&self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
+        if (time>[self duration]) {
+            time = [self duration];
+        }
+        if (time<=0) {
+            time=0.0;
+        }
+        //        int32_t timeScale = self.player.currentItem.asset.duration.timescale;
+        //currentItem.asset.duration.timescale计算的时候严重堵塞主线程，慎用
+        /* A timescale of 1 means you can only specify whole seconds to seek to. The timescale is the number of parts per second. Use 600 for video, as Apple recommends, since it is a product of the common video frame rates like 50, 60, 25 and 24 frames per second*/
+        NSLog(@"######@@@@@##%tu",self.playerItem.currentTime.timescale);
+        [self.player seekToTime:CMTimeMakeWithSeconds(time, self.playerItem.currentTime.timescale) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
+        }];
+    }
+}
+
 //MARK: LLPlaybackControlProtocol
 //播放进度相关
 - (void)progressSliderValueChanged:(id)sender {
@@ -138,7 +178,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     UISlider *slider = sender;
     [self.playbackControlView changePlayStatus:NO];
     [self.player pause];
-    CMTime changedTime = CMTimeMakeWithSeconds(slider.value, 1);
+    CMTime changedTime = CMTimeMakeWithSeconds(slider.value, self.playerItem.currentTime.timescale);
     if (self.playerItem.status == AVPlayerItemStatusReadyToPlay) {
         [self.player seekToTime:changedTime completionHandler:^(BOOL finished) {
             [self.playbackControlView changePlayStatus:YES];
@@ -197,6 +237,9 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
                     [self configureVideoSlider:duration];
                     [self monitoringPlayback:playerItem];// 监听播放状态
                     [self.playbackControlView changePlayStatus:YES];
+                    if (self.seekTime) {
+                        [self seekToTimeToPlay:self.seekTime];
+                    }
                 }
                 break;
                 case AVPlayerStatusFailed:

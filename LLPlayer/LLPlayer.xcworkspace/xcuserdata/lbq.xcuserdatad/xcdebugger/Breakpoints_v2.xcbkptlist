@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LLPlayer/LLPlayerViewController.m"
-            timestampString = "494845100.09836"
+            timestampString = "494846849.898407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-progressSliderValueChangedEnd:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LLPlayer/LLPlayerViewController.m"
-            timestampString = "494845100.09836"
+            timestampString = "494846849.898407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "-progressSliderValueChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LLPlayer/LLPlayerViewController.m"
-            timestampString = "494845100.09836"
+            timestampString = "494846849.898407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-progressSliderValueChangedEnd:"
             landmarkType = "5">
          </BreakpointContent>
