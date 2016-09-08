@@ -41,7 +41,7 @@
 - (void)playLLPlayerVC
 {
     [self presentViewController:self.llPlayerVC animated:YES completion:^{
-        [self.llPlayerVC.player play];
+        [self.llPlayerVC play];
     }];
 }
 
@@ -59,7 +59,7 @@
         make.left.right.top.equalTo(self.view);
         make.height.equalTo(400.);
     }];
-    [self.llPlayerVC.player play];
+    [self.llPlayerVC play];
 }
 
 - (void)playAVPlayer

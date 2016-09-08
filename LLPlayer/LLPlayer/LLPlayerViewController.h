@@ -16,12 +16,13 @@ typedef NS_ENUM(NSUInteger, ELayerVideoGravityType) {
 
 @interface LLPlayerViewController : UIViewController
 
-@property (nonatomic, readonly, strong) AVPlayer *player;
-
 @property (nonatomic, assign) ELayerVideoGravityType videoGravityType;
 
 @property (nonatomic, assign) BOOL showsPlaybackControls;
 
 @property (nonatomic, strong) NSURL *contentURL;
+
+- (void)play;
+- (void)pause;
 
 @end

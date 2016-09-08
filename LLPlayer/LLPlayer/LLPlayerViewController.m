@@ -16,9 +16,9 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 @interface LLPlayerViewController ()<LLPlaybackControlProtocol>
 
 @property (nonatomic, strong) AVPlayer *player;
+@property (nonatomic, strong) AVPlayerItem *playerItem;
 @property (nonatomic, strong) LLPlayerView *playerView;
 @property (nonatomic, strong) LLPlaybackControlView *playbackControlView;
-@property (nonatomic, strong) AVPlayerItem *playerItem;
 
 @property (nonatomic, copy) NSString *totalTime;
 
@@ -28,8 +28,9 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
  *  跳到time处播放
  *  @param seekTime这个时刻，这个时间点
  */
-
 @property (nonatomic, assign) double  seekTime;
+
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 
 @end
 
@@ -46,6 +47,11 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     [self.view addSubview:self.playbackControlView];
     [self.playbackControlView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
+    }];
+    
+    [self.view addSubview:self.indicatorView];
+    [self.indicatorView makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
     }];
 }
 
@@ -64,14 +70,34 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     if(self.playerItem)
     {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem];
-        [self.playerView.player removeTimeObserver:self.playbackTimeObserver];
         [self.playerItem removeObserver:self forKeyPath:@"status"];
         [self.playerItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
         [self.playerItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
         [self.playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
+        [self.playerView.player removeTimeObserver:self.playbackTimeObserver];
         [self.playerView.player replaceCurrentItemWithPlayerItem:nil];
     }
     self.playerItem = nil;
+}
+- (void)play
+{
+    [self.player play];
+}
+- (void)pause
+{
+    [self.player pause];
+}
+
+- (void)startLoading
+{
+    self.indicatorView.hidden = NO;
+    [self.indicatorView startAnimating];
+}
+
+- (void)stopLoading
+{
+    self.indicatorView.hidden = YES;
+    [self.indicatorView stopAnimating];
 }
 
 - (NSTimeInterval)availableDuration {
@@ -254,10 +280,13 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
             CGFloat currentSecond = playerItem.currentTime.value/playerItem.currentTime.timescale;// 计算当前在第几秒
             if (timeInterval < currentSecond) {
                 //loading
+                [self startLoading];
             }else{
                 //remove loading
+                [self stopLoading];
             }
         } else if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
+            [self startLoading];
 //            [self.loadingView startAnimating];
 //            // 当缓冲是空的时候
 //            if (self.currentItem.playbackBufferEmpty) {
@@ -265,6 +294,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 //                [self loadedTimeRanges];
 //            }
         } else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
+            [self stopLoading];
 //            [self.loadingView stopAnimating];
 //            // 当缓冲好的时候
 //            if (self.currentItem.playbackLikelyToKeepUp && self.state == WMPlayerStateBuffering){
@@ -365,6 +395,14 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
         _playbackControlView.delegate = self;
     }
     return _playbackControlView;
+}
+
+- (UIActivityIndicatorView *)indicatorView
+{
+    if(!_indicatorView){
+        _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    }
+    return _indicatorView;
 }
 
 
