@@ -7,7 +7,7 @@
 //
 
 #import "LLPlaybackControlView.h"
-#define LLPlayerSrcName(file) [@"LLPlayer.bundle" stringByAppendingPathComponent:file]
+#import "LLPlayerConfigure.h"
 
 static CGFloat kToolHeight = 40; //标题和底部视图的高度
 
@@ -172,6 +172,24 @@ static CGFloat kToolHeight = 40; //标题和底部视图的高度
 - (void)quickType:(EQuickType)quickType timeStr:(NSString *)timeStr
 {
     
+}
+
+//MARK: LLPlaybackControlViewProtocol
+- (void)setProgressMaxValue:(CGFloat)aMaxValue
+{
+    self.progressSlider.maximumValue = aMaxValue;
+}
+
+-(void)setPlayCurrentTime:(NSString *)currentTime totalTime:(NSString *)aTotalTime
+{
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@/%@",currentTime,aTotalTime]];
+    [attri addAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]} range:NSMakeRange([currentTime length], [aTotalTime length] + 1)];
+    self.timeLabel.attributedText = attri;
+}
+
+- (void)updateProgress:(CGFloat)currentSecond
+{
+    [self.progressSlider setValue:currentSecond animated:YES];
 }
 
 //MARK:lazy

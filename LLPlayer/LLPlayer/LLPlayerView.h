@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "LLPlayerConfigure.h"
 
 @interface LLPlayerView : UIView
 
-//@property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (nonatomic, strong) AVPlayer *player;
-@property (nonatomic, strong) AVPlayerLayer *playerLayer;
+
+@property (nonatomic, assign) ELayerVideoGravityType videoGravityType;
 
 @end

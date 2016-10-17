@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LLPlaybackControlBaseView.h"
+#import "LLPlaybackControlProtocol.h"
 
-@interface LLPlaybackControlView :UIView
+@interface LLPlaybackControlView :UIView<LLPlaybackControlViewProtocol>
 
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIButton *playBtn;
@@ -23,8 +23,15 @@
 
 @property (nonatomic, strong) UILabel *timeLabel;
 
+//MARK: LLPlaybackControlViewProtocol 方法
 @property (nonatomic, weak) id<LLPlaybackControlProtocol> delegate;
 
 - (void)changePlayStatus:(BOOL)play;
+
+- (void)setProgressMaxValue:(CGFloat)aMaxValue;
+
+- (void)setPlayCurrentTime:(NSString *)currentTime totalTime:(NSString *)aTotalTime;
+
+- (void)updateProgress:(CGFloat)currentSecond;
 
 @end

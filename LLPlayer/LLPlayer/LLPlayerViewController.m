@@ -8,8 +8,6 @@
 
 #import "LLPlayerViewController.h"
 #import "LLPlayerView.h"
-#import "LLPlaybackControlView.h"
-#import "LLPlaybackControlProtocol.h"
 
 static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContext;
 
@@ -18,11 +16,11 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) AVPlayerItem *playerItem;
 @property (nonatomic, strong) LLPlayerView *playerView;
-@property (nonatomic, strong) LLPlaybackControlView *playbackControlView;
+@property (nonatomic, strong) UIView<LLPlaybackControlViewProtocol> *playbackControlView;
 
 @property (nonatomic, copy) NSString *totalTime;
 
-@property (nonatomic, strong) id playbackTimeObserver;
+@property (nonatomic, strong) id<NSObject> playbackTimeObserver;
 
 /**
  *  跳到time处播放
@@ -36,14 +34,18 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 
 @implementation LLPlayerViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.playerView];
+    self.view.backgroundColor = [UIColor blackColor];
+    
     self.seekTime = 0.0;
+    [self.view addSubview:self.playerView];
     [self.playerView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     
+    self.playbackControlView = [self controlView];
     [self.view addSubview:self.playbackControlView];
     [self.playbackControlView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -58,6 +60,14 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//MARK: 需要重写该方法
+- (UIView<LLPlaybackControlViewProtocol> *)controlView {
+//    LLPlaybackControlView *controlView = [[LLPlaybackControlView alloc] init];
+//    controlView.delegate = self;
+//    return controlView;
+    return nil;
 }
 
 - (void)dealloc
@@ -77,12 +87,13 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
         [self.playerView.player removeTimeObserver:self.playbackTimeObserver];
         [self.playerView.player replaceCurrentItemWithPlayerItem:nil];
     }
-    self.playerItem = nil;
 }
+
 - (void)play
 {
     [self.player play];
 }
+
 - (void)pause
 {
     [self.player pause];
@@ -123,26 +134,30 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 
 - (void)monitoringPlayback:(AVPlayerItem *)playerItem {
     __weak LLPlayerViewController *weakSelf = self;
+    //要求在播放期间请求调用
+    //CMTimeMake(1, 1) 每隔一秒调用一次block
     self.playbackTimeObserver = [self.playerView.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:NULL usingBlock:^(CMTime time) {
-        CGFloat currentSecond = playerItem.currentTime.value/playerItem.currentTime.timescale;// 计算当前在第几秒
+        CGFloat currentSecond = CMTimeGetSeconds(playerItem.currentTime);// 计算当前在第几秒
         [weakSelf updateVideoSlider:currentSecond];
         NSString *timeString = [weakSelf convertTime:currentSecond];
-        
-        NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@/%@",timeString,weakSelf.totalTime]];
-        [attri addAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]} range:NSMakeRange([timeString length], [_totalTime length] + 1)];
-        
-        weakSelf.playbackControlView.timeLabel.attributedText = attri;
+        if ([weakSelf.playbackControlView respondsToSelector:@selector(setPlayCurrentTime:totalTime:)]) {
+            [weakSelf.playbackControlView setPlayCurrentTime:timeString totalTime:weakSelf.totalTime];
+        }
     }];
 }
 
-- (void)configureVideoSlider:(CMTime)duration
+- (void)configureVideoSlider:(CGFloat)maxValue
 {
-    self.playbackControlView.progressSlider.maximumValue = CMTimeGetSeconds(duration);
-//    UIGraphicsBeginImageContextWithOptions((CGSize){ 1, 1 }, NO, 0.0f);
-//    UIGraphicsEndImageContext();
+    if ([self.playbackControlView respondsToSelector:@selector(setProgressMaxValue:)]) {
+        [self.playbackControlView setProgressMaxValue:maxValue];
+    }
+    //    UIGraphicsBeginImageContextWithOptions((CGSize){ 1, 1 }, NO, 0.0f);
+    //    UIGraphicsEndImageContext();
 }
 - (void)updateVideoSlider:(CGFloat)currentSecond {
-    [self.playbackControlView.progressSlider setValue:currentSecond animated:YES];
+    if ([self.playbackControlView respondsToSelector:@selector(updateProgress:)]) {
+        [self.playbackControlView updateProgress:currentSecond];
+    }
 }
 
 - (void)moviePlayDidEnd:(NSNotification *)notification {
@@ -227,12 +242,16 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 //全屏 小屏
 - (void)didClickFullScreenAction:(id)sender
 {
-    
+    if(self.fullScreenBlock) {
+        self.fullScreenBlock(sender);
+    }
 }
 
 - (void)didClickShrinkScreenAction:(id)sender
 {
-    
+    if (self.shrinkScreenBlock) {
+        self.shrinkScreenBlock(sender);
+    }
 }
 
 //收拾 快进 快退
@@ -253,26 +272,25 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
                 {
                     
                 }
-                break;
+                    break;
                 case AVPlayerStatusReadyToPlay:
                 {
-                    NSLog(@"####%lld",playerItem.duration.value/playerItem.duration.timescale);
-                    CMTime duration = playerItem.duration;// 获取视频总长度
-                    CGFloat totalSecond = playerItem.duration.value / playerItem.duration.timescale;// 转换成秒
+                    CGFloat totalSecond = CMTimeGetSeconds(playerItem.duration);//获取视频总长度 并 转换成秒
+                    NSLog(@"####%f",totalSecond);
                     self.totalTime = [self convertTime:totalSecond];// 转换成播放时间
-                    [self configureVideoSlider:duration];
+                    [self configureVideoSlider:totalSecond];
                     [self monitoringPlayback:playerItem];// 监听播放状态
                     [self.playbackControlView changePlayStatus:YES];
                     if (self.seekTime) {
                         [self seekToTimeToPlay:self.seekTime];
                     }
                 }
-                break;
+                    break;
                 case AVPlayerStatusFailed:
                 {
                     
                 }
-                break;
+                    break;
             }
         } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
             NSLog(@"---####%lld",playerItem.currentTime.value/playerItem.currentTime.timescale);
@@ -287,19 +305,19 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
             }
         } else if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
             [self startLoading];
-//            [self.loadingView startAnimating];
-//            // 当缓冲是空的时候
-//            if (self.currentItem.playbackBufferEmpty) {
-//                self.state = WMPlayerStateBuffering;
-//                [self loadedTimeRanges];
-//            }
+            //            [self.loadingView startAnimating];
+            //            // 当缓冲是空的时候
+            //            if (self.currentItem.playbackBufferEmpty) {
+            //                self.state = WMPlayerStateBuffering;
+            //                [self loadedTimeRanges];
+            //            }
         } else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
             [self stopLoading];
-//            [self.loadingView stopAnimating];
-//            // 当缓冲好的时候
-//            if (self.currentItem.playbackLikelyToKeepUp && self.state == WMPlayerStateBuffering){
-//                self.state = WMPlayerStatePlaying;
-//            }
+            //            [self.loadingView stopAnimating];
+            //            // 当缓冲好的时候
+            //            if (self.currentItem.playbackLikelyToKeepUp && self.state == WMPlayerStateBuffering){
+            //                self.state = WMPlayerStatePlaying;
+            //            }
         }
     }
 }
@@ -316,8 +334,6 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     _contentURL = contentURL;
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:contentURL];
     self.playerItem = playerItem;
-    [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
-    [playerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];// 监听loadedTimeRanges属性
     AVPlayer *aPlayer = [AVPlayer playerWithPlayerItem:playerItem];
     self.player = aPlayer;
 }
@@ -327,7 +343,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     if (_playerItem==playerItem) {
         return;
     }
-    if (_playerItem) {
+    if (_playerItem && playerItem) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem];
         [_playerItem removeObserver:self forKeyPath:@"status"];
         [_playerItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
@@ -338,15 +354,24 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     _playerItem = playerItem;
     if (_playerItem) {
         [_playerItem addObserver:self
-                       forKeyPath:@"status"
-                          options:NSKeyValueObservingOptionNew
-                          context:PlayViewStatusObservationContext];
+                      forKeyPath:@"status"
+                         options:NSKeyValueObservingOptionNew
+                         context:PlayViewStatusObservationContext];
         
-        [_playerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:PlayViewStatusObservationContext];
+        [_playerItem addObserver:self
+                      forKeyPath:@"loadedTimeRanges"
+                         options:NSKeyValueObservingOptionNew
+                         context:PlayViewStatusObservationContext];
         // 缓冲区空了，需要等待数据
-        [_playerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options: NSKeyValueObservingOptionNew context:PlayViewStatusObservationContext];
+        [_playerItem addObserver:self
+                      forKeyPath:@"playbackBufferEmpty"
+                         options: NSKeyValueObservingOptionNew
+                         context:PlayViewStatusObservationContext];
         // 缓冲区有足够数据可以播放了
-        [_playerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options: NSKeyValueObservingOptionNew context:PlayViewStatusObservationContext];
+        [_playerItem addObserver:self
+                      forKeyPath:@"playbackLikelyToKeepUp"
+                         options: NSKeyValueObservingOptionNew
+                         context:PlayViewStatusObservationContext];
         
         [self.player replaceCurrentItemWithPlayerItem:_playerItem];
         // 添加视频播放结束通知
@@ -357,21 +382,8 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 - (void)setVideoGravityType:(ELayerVideoGravityType)videoGravityType
 {
     _videoGravityType = videoGravityType;
-    switch (videoGravityType) {
-        case ELayerVideoGravityTypeResize:
-            self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResize;
-            break;
-        case ELayerVideoGravityTypeResizeAspect:
-            self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-            break;
-        case ELayerVideoGravityTypeResizeAspectFill:
-            self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-            break;
-        default:
-            self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-            break;
-    }
-}   
+    self.playerView.videoGravityType = videoGravityType;
+}
 
 - (void)setShowsPlaybackControls:(BOOL)showsPlaybackControls
 {
@@ -386,15 +398,6 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
         _playerView = [[LLPlayerView alloc] init];
     }
     return _playerView;
-}
-
-- (LLPlaybackControlView *)playbackControlView
-{
-    if(!_playbackControlView){
-        _playbackControlView = [[LLPlaybackControlView alloc] init];
-        _playbackControlView.delegate = self;
-    }
-    return _playbackControlView;
 }
 
 - (UIActivityIndicatorView *)indicatorView

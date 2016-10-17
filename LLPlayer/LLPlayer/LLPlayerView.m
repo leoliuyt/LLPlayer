@@ -27,6 +27,31 @@
     [(AVPlayerLayer*)[self layer] setPlayer:player];
 }
 
+- (void)setVideoGravityType:(ELayerVideoGravityType)videoGravityType
+{
+    _videoGravityType = videoGravityType;
+    switch (videoGravityType) {
+        case ELayerVideoGravityTypeResize:
+            self.playerLayer.videoGravity = AVLayerVideoGravityResize;
+            break;
+        case ELayerVideoGravityTypeResizeAspect:
+            self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+            break;
+        case ELayerVideoGravityTypeResizeAspectFill:
+            self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+            break;
+        default:
+            self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+            break;
+    }
+}
+
+- (void)dealloc
+{
+    NSLog(@"%s",__func__);
+}
+
+
 //- (void)setPlayerLayer:(AVPlayerLayer *)playerLayer
 //{
 //    _playerLayer = playerLayer;

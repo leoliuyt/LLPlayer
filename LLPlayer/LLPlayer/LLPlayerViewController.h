@@ -8,11 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-typedef NS_ENUM(NSUInteger, ELayerVideoGravityType) {
-    ELayerVideoGravityTypeResize,
-    ELayerVideoGravityTypeResizeAspectFill,
-    ELayerVideoGravityTypeResizeAspect
-};
+#import "LLPlayerConfigure.h"
+#import "LLPlaybackControlProtocol.h"
 
 @interface LLPlayerViewController : UIViewController
 
@@ -21,6 +18,12 @@ typedef NS_ENUM(NSUInteger, ELayerVideoGravityType) {
 @property (nonatomic, assign) BOOL showsPlaybackControls;
 
 @property (nonatomic, strong) NSURL *contentURL;
+
+@property (nonatomic, copy) void(^fullScreenBlock)(id sender);
+@property (nonatomic, copy) void(^shrinkScreenBlock)(id sender);
+
+//MARK: 必须重写该方法
+- (UIView<LLPlaybackControlViewProtocol> *)controlView;
 
 - (void)play;
 - (void)pause;

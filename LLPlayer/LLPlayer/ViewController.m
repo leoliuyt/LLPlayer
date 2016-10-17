@@ -9,12 +9,17 @@
 #import "ViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
-#import "LLPlayerViewController.h"
+#import "LLNavigationController.h"
+#import "LLFullScreenViewController.h"
+#import "LLPlayerDemoVC.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) AVPlayerViewController *playerVC;
 @property (nonatomic, strong) LLPlayerViewController *llPlayerVC;
+
+@property (nonatomic, strong) LLPlayerDemoVC *demoVC;
+
 
 @end
 
@@ -22,6 +27,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+//        [UIViewController attemptRotationToDeviceOrientation];
+//    }
+//    
+//    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+//    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,9 +52,36 @@
 //    [self playAVPlayer];
 //    [self playAVPlayerVCADD];
 //    [self playLLPlayerVC];
-    [self playLLPlayerVCADD];
+//    [self playLLPlayerVCADD];
+    [self playDemoVC];
 }
 
+- (IBAction)closePlayer:(id)sender {
+    [self.llPlayerVC pause];
+    [self.llPlayerVC.view removeFromSuperview];
+    self.llPlayerVC = nil;
+}
+- (IBAction)jumpAction:(id)sender {
+    [self.demoVC.view removeFromSuperview];
+    LLFullScreenViewController *vc = [[LLFullScreenViewController alloc] init];
+    vc.videoPlayerVC = self.demoVC;
+    LLNavigationController *nav = [[LLNavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)playDemoVC
+{
+    self.demoVC.view.frame = CGRectMake(0, 64, 320, 200);
+    self.demoVC.videoGravityType = ELayerVideoGravityTypeResizeAspectFill;
+    [self.view addSubview:self.demoVC.view];
+    [self.demoVC.view makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.height.equalTo(200.);
+    }];
+    [self.demoVC play];
+}
+
+//MARK: LLPlayerViewController
 - (void)playLLPlayerVC
 {
     [self presentViewController:self.llPlayerVC animated:YES completion:^{
@@ -47,21 +91,17 @@
 
 - (void)playLLPlayerVCADD
 {
-//    NSURL *url = [NSURL URLWithString:@"http://cdn.ghs-tv.readtv.cn/video/12ac13b476496f5d308478f090ccf7c9/stream.m3u8"];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"];
-//    AVPlayer *player = [AVPlayer playerWithURL:url];
-//    _llPlayerVC.player = player;
-//    _llPlayerVC.contentURL = url;
-    self.llPlayerVC.view.frame = CGRectMake(0, 64, 320, 400);
+    self.llPlayerVC.view.frame = CGRectMake(0, 64, 320, 200);
     self.llPlayerVC.videoGravityType = ELayerVideoGravityTypeResizeAspectFill;
     [self.view addSubview:self.llPlayerVC.view];
     [self.llPlayerVC.view makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
-        make.height.equalTo(400.);
+        make.height.equalTo(200.);
     }];
     [self.llPlayerVC play];
 }
 
+//MARK: AVPlayerViewController
 - (void)playAVPlayer
 {
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"];
@@ -103,12 +143,8 @@
         _playerVC = [[AVPlayerViewController alloc] init];
         AVPlayer *player = [AVPlayer playerWithURL:[[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"]];
         _playerVC.showsPlaybackControls = YES;
-//        NSString * const AVLayerVideoGravityResize;
-//        NSString * const AVLayerVideoGravityResizeAspect; //default
-//        NSString * const AVLayerVideoGravityResizeAspectFill;
         _playerVC.videoGravity = AVLayerVideoGravityResizeAspect;
         _playerVC.player = player;
-//        _playerVC.player.
     }
     return _playerVC;
 }
@@ -120,10 +156,19 @@
 //        AVPlayer *player = [AVPlayer playerWithURL:[[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"]];
 //        NSURL *url = [NSURL URLWithString:@"http://cdn.ghs-tv.readtv.cn/video/12ac13b476496f5d308478f090ccf7c9/stream.m3u8"];
         NSURL *url = [NSURL URLWithString:@"http://pl.youku.com/playlist/m3u8?vid=XMTcwNDE3NTgyOA==&type=mp4&ts=1472523895&keyframe=0&ep=dSaTGEyPVcYH7SbfjD8bZX2zJ34IXJZ3kkzC%252F6YXA8VAH6HA6DPcqJ6zTPs%253D&sid=7472523878504122aac97&token=3324&ctype=12&ev=1&oip=2937696939"];
-//        AVPlayer *player = [AVPlayer playerWithURL:url];
-//        _llPlayerVC.player = player;
         _llPlayerVC.contentURL = url;
     }
     return _llPlayerVC;
 }
+
+- (LLPlayerDemoVC *)demoVC
+{
+    if(!_demoVC){
+        _demoVC = [[LLPlayerDemoVC alloc] init];
+        NSURL *url = [NSURL URLWithString:@"http://pl.youku.com/playlist/m3u8?vid=XMTcwNDE3NTgyOA==&type=mp4&ts=1472523895&keyframe=0&ep=dSaTGEyPVcYH7SbfjD8bZX2zJ34IXJZ3kkzC%252F6YXA8VAH6HA6DPcqJ6zTPs%253D&sid=7472523878504122aac97&token=3324&ctype=12&ev=1&oip=2937696939"];
+        _demoVC.contentURL = url;
+    }
+    return _demoVC;
+}
+
 @end
