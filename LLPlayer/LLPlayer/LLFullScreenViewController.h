@@ -8,12 +8,10 @@
 
 #import "LLViewController.h"
 
-@class LLPlayerViewController;
+@class LLPlayerDemoVC;
 @interface LLFullScreenViewController : LLViewController
 
 @property (nonatomic, strong) UIView *originalView;
 @property (nonatomic, strong) UIImage *bgImage;
-
-@property (nonatomic, strong) LLPlayerViewController *videoPlayerVC;
 
 @end

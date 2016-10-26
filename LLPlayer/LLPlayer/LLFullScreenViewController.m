@@ -7,7 +7,7 @@
 //
 
 #import "LLFullScreenViewController.h"
-#import "LLPlayerViewController.h"
+#import "LLPlayerDemoVC.h"
 #import "UIView+LL.h"
 
 static CGFloat kAnimationDuration = 0.28;
@@ -25,6 +25,8 @@ static CGFloat kAnimationDuration = 0.28;
 
 @property (nonatomic, assign) BOOL isPortrait;
 @property (nonatomic, strong) UIControl *disappearControl;
+
+@property (nonatomic, strong) LLPlayerDemoVC *videoPlayerVC;
 
 
 @end
@@ -75,43 +77,23 @@ static CGFloat kAnimationDuration = 0.28;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(shrinkScreenAction:)];
-//    
-////    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toolbarShowOrHide:) name:kNotificationToolBarShowOrHide object:nil];
-//    self.navigationController.navigationBarHidden = YES;
-//    
-//    self.bgImageView = [[UIImageView alloc]initWithImage:self.bgImage];
-//    [self.view addSubview:self.bgImageView];
-//    [self.bgImageView makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.view);
-//    }];
-//    
-//    [self.view addSubview:self.disappearControl];
-//    [self.disappearControl makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.view);
-//    }];
-//    [self.disappearControl addTarget:self action:@selector(disappearVC:) forControlEvents:UIControlEventTouchUpInside];
-//    [self performAnimationShow];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(shrinkScreenAction:)];
     
-    [self addChildViewController:self.videoPlayerVC];
-    [self.videoPlayerVC didMoveToParentViewController:self];
-//    self.videoPlayerVC.view.bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    [self.view addSubview:self.videoPlayerVC.view];
-    [self.videoPlayerVC.view makeConstraints:^(MASConstraintMaker *make) {
-//        make.height.equalTo(frame.size.height);
-//        make.width.equalTo(frame.size.width);
-//        make.center.equalTo(weakSelf.view);
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toolbarShowOrHide:) name:kNotificationToolBarShowOrHide object:nil];
+    self.navigationController.navigationBarHidden = YES;
+    
+    self.bgImageView = [[UIImageView alloc]initWithImage:self.bgImage];
+    [self.view addSubview:self.bgImageView];
+    [self.bgImageView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     
-    WEAKSELF(weakSelf);
-    self.videoPlayerVC.fullScreenBlock = ^(id sender){
-        [weakSelf fullScreenAction:sender];
-    };
-    
-    self.videoPlayerVC.shrinkScreenBlock = ^(id sender){
-        [weakSelf shrinkScreenAction:nil];
-    };
+    [self.view addSubview:self.disappearControl];
+    [self.disappearControl makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [self.disappearControl addTarget:self action:@selector(disappearVC:) forControlEvents:UIControlEventTouchUpInside];
+    [self performAnimationShow];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,12 +127,12 @@ static CGFloat kAnimationDuration = 0.28;
     self.navigationController.navigationBarHidden = YES;
 //    self.videoPlayerVC.isPortrait = YES;
 
-//    [self.videoPlayerVC.view remakeConstraints:^(MASConstraintMaker *make) {
-//        make.height.equalTo(self.finalFrame.size.height);
-//        make.width.equalTo(self.finalFrame.size.width);
-//        make.center.equalTo(self.view);
-//    }];
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.videoPlayerVC.view remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.finalFrame.size.height);
+        make.width.equalTo(self.finalFrame.size.width);
+        make.center.equalTo(self.view);
+    }];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     self.disappearControl.enabled = YES;
@@ -162,13 +144,18 @@ static CGFloat kAnimationDuration = 0.28;
     [self setNeedsStatusBarAppearanceUpdate];
     self.isPortrait = NO;
     self.disappearControl.enabled = NO;
-    //    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 //    self.videoPlayerVC.isPortrait = NO;
     [self.videoPlayerVC.view remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+}
+
+- (void)backAction:(id)sender
+{
+    [self performAnimationClose];
 }
 
 - (void)disappearVC:(id)sender
@@ -189,7 +176,7 @@ static CGFloat kAnimationDuration = 0.28;
     resizableImageView.clipsToBounds = YES;
     resizableImageView.contentMode = UIViewContentModeScaleAspectFill;
     resizableImageView.backgroundColor = [UIColor clearColor];
-    [LEOAppDelegate.window addSubview:resizableImageView];
+    [LLAppDelegate.window addSubview:resizableImageView];
     WEAKSELF(weakSelf)
     void(^completion)(CGRect frame) = ^(CGRect frame) {
         [weakSelf addChildViewController:weakSelf.videoPlayerVC];
@@ -204,12 +191,19 @@ static CGFloat kAnimationDuration = 0.28;
         weakSelf.videoPlayerVC.view.backgroundColor = weakSelf.originalView.backgroundColor;
 //        weakSelf.videoPlayerVC.isPortrait = YES;
 //        [weakSelf.videoPlayerVC playUrl:@"http://video1.ileci.com/word/deceive_s.mp4"];
-//        weakSelf.videoPlayerVC.fullScreenBlock = ^(id sender){
-//            [weakSelf fullScreenAction:sender];
-//        };
-//        weakSelf.videoPlayerVC.shrinkScreenBlock = ^(id sender){
-//            [weakSelf shrinkScreenAction:sender];
-//        };
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"];
+//        NSURL *url = [NSURL URLWithString:@"http://video1.ileci.com/word/deceive_s.mp4"];
+        weakSelf.videoPlayerVC.contentURL = url;
+        weakSelf.videoPlayerVC.fullScreenBlock = ^(id sender){
+            [weakSelf fullScreenAction:sender];
+        };
+        weakSelf.videoPlayerVC.shrinkScreenBlock = ^(id sender){
+            [weakSelf shrinkScreenAction:sender];
+        };
+        
+        weakSelf.videoPlayerVC.backBlock = ^(id sender){
+            [weakSelf backAction:sender];
+        };
         [resizableImageView removeFromSuperview];
     };
     
@@ -237,7 +231,7 @@ static CGFloat kAnimationDuration = 0.28;
     resizableImageView.contentMode = UIViewContentModeScaleAspectFill;
     resizableImageView.backgroundColor = [UIColor clearColor];
     resizableImageView.clipsToBounds = YES;
-    [LEOAppDelegate.window addSubview:resizableImageView];
+    [LLAppDelegate.window addSubview:resizableImageView];
     self.videoPlayerVC.view.hidden = YES;
     WEAKSELF(weakSelf)
     void (^completion)() = ^() {
@@ -302,13 +296,13 @@ static CGFloat kAnimationDuration = 0.28;
     return _bgImageView;
 }
 
-- (LLPlayerViewController *)videoPlayerVC
+- (LLPlayerDemoVC *)videoPlayerVC
 {
     if(!_videoPlayerVC)
     {
 //        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //        _videoPlayerVC = (LEOVideoPlayerViewController *)[mainSB instantiateViewControllerWithIdentifier:@"VideoPlayerVC"];
-        _videoPlayerVC = [[LLPlayerViewController alloc] init];
+        _videoPlayerVC = [[LLPlayerDemoVC alloc] init];
     }
     return _videoPlayerVC;
 }

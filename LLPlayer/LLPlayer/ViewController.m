@@ -12,6 +12,7 @@
 #import "LLNavigationController.h"
 #import "LLFullScreenViewController.h"
 #import "LLPlayerDemoVC.h"
+#import "LLPlayerConfigure.h"
 
 @interface ViewController ()
 
@@ -27,24 +28,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-//    if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
-//        [UIViewController attemptRotationToDeviceOrientation];
-//    }
-//    
-//    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-//    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)playAction:(id)sender {
 //    [self playAVPlayerVC];
@@ -64,7 +55,7 @@
 - (IBAction)jumpAction:(id)sender {
     [self.demoVC.view removeFromSuperview];
     LLFullScreenViewController *vc = [[LLFullScreenViewController alloc] init];
-    vc.videoPlayerVC = self.demoVC;
+//    vc.videoPlayerVC = self.demoVC;
     LLNavigationController *nav = [[LLNavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
 }

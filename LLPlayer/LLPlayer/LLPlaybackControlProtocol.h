@@ -25,6 +25,9 @@ typedef NS_ENUM(NSUInteger, EQuickType) {
 
 - (void)didClickShrinkScreenAction:(id)sender;
 
+//退出
+- (void)didClickBackAction:(id)sender;
+
 //播放进度相关
 - (void)progressSliderValueChanged:(id)sender;
 

@@ -156,6 +156,13 @@ static CGFloat kToolHeight = 40; //标题和底部视图的高度
     }
 }
 
+- (void)backAction:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(didClickBackAction:)]) {
+        [self.delegate didClickBackAction:sender];
+    }
+}
+
 - (void)progressSliderValueChanged:(id)sender {
     if ([self.delegate respondsToSelector:@selector(progressSliderValueChanged:)]) {
         [self.delegate progressSliderValueChanged:sender];
@@ -216,6 +223,7 @@ static CGFloat kToolHeight = 40; //标题和底部视图的高度
     if(!_backBtn){
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backBtn setImage:[UIImage imageNamed:LLPlayerSrcName(@"kr-video-player-close")] forState:UIControlStateNormal];
+        [_backBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backBtn;
 }

@@ -21,6 +21,7 @@
 
 @property (nonatomic, copy) void(^fullScreenBlock)(id sender);
 @property (nonatomic, copy) void(^shrinkScreenBlock)(id sender);
+@property (nonatomic, copy) void(^backBlock)(id sender);
 
 //MARK: 必须重写该方法
 - (UIView<LLPlaybackControlViewProtocol> *)controlView;

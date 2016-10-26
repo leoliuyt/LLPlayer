@@ -18,9 +18,6 @@
 #define kScreenW [[UIScreen mainScreen] bounds].size.width
 #define kScreenH [[UIScreen mainScreen] bounds].size.height
 
-#import "AppDelegate.h"
-#define LEOAppDelegate [[UIApplication sharedApplication] delegate]
-
 #define WEAKSELF(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 #define LLPlayerSrcName(file) [@"LLPlayer.bundle" stringByAppendingPathComponent:file]

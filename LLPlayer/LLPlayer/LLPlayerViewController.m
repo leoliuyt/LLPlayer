@@ -254,6 +254,13 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     }
 }
 
+- (void)didClickBackAction:(id)sender
+{
+    if (self.backBlock) {
+        self.backBlock(sender);
+    }
+}
+
 //收拾 快进 快退
 - (void)quickType:(EQuickType)quickType timeStr:(NSString *)timeStr
 {
