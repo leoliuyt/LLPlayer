@@ -19,4 +19,7 @@
 
 #import "LLPlayerConfigure.h"
 
+#import "AppDelegate.h"
+#define LLAppDelegate [[UIApplication sharedApplication] delegate]
+
 #endif /* LLPlayerPrefixHeader_pch */
