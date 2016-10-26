@@ -34,4 +34,6 @@
 
 - (void)updateProgress:(CGFloat)currentSecond;
 
+- (void)hideToolBar:(BOOL)isHide;
+
 @end

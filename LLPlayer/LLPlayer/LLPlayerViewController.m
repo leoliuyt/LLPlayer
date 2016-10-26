@@ -22,6 +22,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 
 @property (nonatomic, strong) id<NSObject> playbackTimeObserver;
 
+
 /**
  *  跳到time处播放
  *  @param seekTime这个时刻，这个时间点
@@ -29,6 +30,10 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 @property (nonatomic, assign) double  seekTime;
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
+
+@property (nonatomic, copy) NSTimer *timer;
+
+@property (nonatomic, assign, getter=isHidedToolBar) BOOL hidedToolBar;
 
 @end
 
@@ -38,7 +43,6 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-    
     self.seekTime = 0.0;
     [self.view addSubview:self.playerView];
     [self.playerView makeConstraints:^(MASConstraintMaker *make) {
@@ -46,15 +50,19 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     }];
     
     self.playbackControlView = [self controlView];
-    [self.view addSubview:self.playbackControlView];
-    [self.playbackControlView makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
+    if (self.playbackControlView) {
+        [self.view addSubview:self.playbackControlView];
+        [self.playbackControlView makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+    }
     
     [self.view addSubview:self.indicatorView];
     [self.indicatorView makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
     }];
+    
+    [self addTimer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,6 +82,29 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 {
     self.seekTime = 0;
     [self removeKVOObserver];
+}
+
+- (void)addTimer{
+    //如果不显示控制界面 那么不需要添加计时器 自动隐藏功能失效
+    if(!self.showsPlaybackControls){return;}
+    if(self.timer) {
+        [self removeTimer];
+    }
+    self.timer = [NSTimer timerWithTimeInterval:self.autoHideTime target:self selector:@selector(hideToolBar) userInfo:nil repeats:NO];
+    [self.timer fire];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)removeTimer{
+    if(!self.showsPlaybackControls){return;}
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void)hideToolBar
+{
+    self.hidedToolBar = YES;
+    [self.playbackControlView hideToolBar:YES];
 }
 
 -(void)removeKVOObserver{
@@ -197,6 +228,18 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
         [self.player seekToTime:CMTimeMakeWithSeconds(time, self.playerItem.currentTime.timescale) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
         }];
     }
+}
+//MARK: Touch
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    if (self.isHidedToolBar) {
+        [self addTimer];
+    } else {
+        [self removeTimer];
+    }
+    [self.playbackControlView hideToolBar:!self.isHidedToolBar];
+    self.hidedToolBar = !self.isHidedToolBar;
 }
 
 //MARK: LLPlaybackControlProtocol
@@ -398,6 +441,15 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     self.playbackControlView.hidden = !showsPlaybackControls;
 }
 
+//MARK: Getter
+- (CGFloat)autoHideTime
+{
+    if (_autoHideTime<0.00001) {
+        return 3.;
+    }
+    return _autoHideTime;
+}
+
 //MARK:lazy
 - (LLPlayerView *)playerView
 {
@@ -414,7 +466,6 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     }
     return _indicatorView;
 }
-
 
 //- (void)addLaytout
 //{

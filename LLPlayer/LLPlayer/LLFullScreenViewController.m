@@ -181,6 +181,7 @@ static CGFloat kAnimationDuration = 0.28;
     void(^completion)(CGRect frame) = ^(CGRect frame) {
         [weakSelf addChildViewController:weakSelf.videoPlayerVC];
         [weakSelf.videoPlayerVC didMoveToParentViewController:weakSelf];
+        weakSelf.videoPlayerVC.showsPlaybackControls = YES;
         weakSelf.videoPlayerVC.view.bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);
         [weakSelf.view addSubview:weakSelf.videoPlayerVC.view];
         [weakSelf.videoPlayerVC.view makeConstraints:^(MASConstraintMaker *make) {
@@ -191,8 +192,8 @@ static CGFloat kAnimationDuration = 0.28;
         weakSelf.videoPlayerVC.view.backgroundColor = weakSelf.originalView.backgroundColor;
 //        weakSelf.videoPlayerVC.isPortrait = YES;
 //        [weakSelf.videoPlayerVC playUrl:@"http://video1.ileci.com/word/deceive_s.mp4"];
-        NSURL *url = [[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"];
-//        NSURL *url = [NSURL URLWithString:@"http://video1.ileci.com/word/deceive_s.mp4"];
+//        NSURL *url = [[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"];
+        NSURL *url = [NSURL URLWithString:@"http://video1.ileci.com/word/deceive_s.mp4"];
         weakSelf.videoPlayerVC.contentURL = url;
         weakSelf.videoPlayerVC.fullScreenBlock = ^(id sender){
             [weakSelf fullScreenAction:sender];

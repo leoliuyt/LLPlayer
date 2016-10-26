@@ -60,4 +60,7 @@ typedef NS_ENUM(NSUInteger, EQuickType) {
 // 更新播放进度条
 - (void)updateProgress:(CGFloat)currentSecond;
 
+//隐藏toolbar
+- (void)hideToolBar:(BOOL)isHide;
+
 @end

@@ -199,6 +199,11 @@ static CGFloat kToolHeight = 40; //标题和底部视图的高度
     [self.progressSlider setValue:currentSecond animated:YES];
 }
 
+- (void)hideToolBar:(BOOL)isHide{
+    self.topView.hidden = isHide;
+    self.bottomView.hidden = isHide;
+}
+
 //MARK:lazy
 - (UIView *)topView
 {

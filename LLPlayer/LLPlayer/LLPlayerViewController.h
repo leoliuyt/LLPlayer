@@ -13,14 +13,24 @@
 
 @interface LLPlayerViewController : UIViewController
 
+// 视频显示模式 类似图片的ContentMode
 @property (nonatomic, assign) ELayerVideoGravityType videoGravityType;
 
+//是否显示控制界面 如果为NO 自动隐藏将失效
 @property (nonatomic, assign) BOOL showsPlaybackControls;
 
+//控制界面的自动隐藏时间 默认3s
+@property (nonatomic, assign) CGFloat autoHideTime;
+//视频链接 可以是本地路径URL
 @property (nonatomic, strong) NSURL *contentURL;
 
+//横屏
 @property (nonatomic, copy) void(^fullScreenBlock)(id sender);
+
+//竖屏
 @property (nonatomic, copy) void(^shrinkScreenBlock)(id sender);
+
+//返回
 @property (nonatomic, copy) void(^backBlock)(id sender);
 
 //MARK: 必须重写该方法
