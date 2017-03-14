@@ -200,8 +200,10 @@ static CGFloat kToolHeight = 40; //标题和底部视图的高度
 }
 
 - (void)hideToolBar:(BOOL)isHide{
-    self.topView.hidden = isHide;
-    self.bottomView.hidden = isHide;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.topView.alpha = isHide ? 0. : 1.;
+        self.bottomView.alpha = isHide ? 0. : 1.;
+    }];
 }
 
 //MARK:lazy

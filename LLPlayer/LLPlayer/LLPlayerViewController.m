@@ -31,7 +31,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 
-@property (nonatomic, copy) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *timer;
 
 @property (nonatomic, assign, getter=isHidedToolBar) BOOL hidedToolBar;
 
@@ -90,8 +90,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     if(self.timer) {
         [self removeTimer];
     }
-    self.timer = [NSTimer timerWithTimeInterval:self.autoHideTime target:self selector:@selector(hideToolBar) userInfo:nil repeats:NO];
-    [self.timer fire];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.autoHideTime target:self selector:@selector(hideToolBarAction:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
@@ -101,7 +100,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     self.timer = nil;
 }
 
-- (void)hideToolBar
+- (void)hideToolBarAction:(id)sender
 {
     self.hidedToolBar = YES;
     [self.playbackControlView hideToolBar:YES];
