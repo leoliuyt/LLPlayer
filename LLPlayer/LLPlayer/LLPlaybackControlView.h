@@ -10,19 +10,6 @@
 #import "LLPlaybackControlProtocol.h"
 
 @interface LLPlaybackControlView :UIView<LLPlaybackControlViewProtocol>
-
-@property (nonatomic, strong) UIButton *backBtn;
-@property (nonatomic, strong) UIButton *playBtn;
-@property (nonatomic, strong) UIButton *pauseBtn;
-@property (nonatomic, strong) UIButton *fullBtn;
-@property (nonatomic, strong) UIButton *shrinkBtn;
-
-@property (nonatomic, strong) UILabel *titleLabel;
-
-@property (nonatomic, strong) UISlider *progressSlider;
-
-@property (nonatomic, strong) UILabel *timeLabel;
-
 //MARK: LLPlaybackControlViewProtocol 方法
 @property (nonatomic, weak) id<LLPlaybackControlProtocol> delegate;
 

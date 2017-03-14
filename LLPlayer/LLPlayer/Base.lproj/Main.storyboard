@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xrm-Ns-vKc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xrm-Ns-vKc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,9 +23,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teR-2M-r4U">
+                                <rect key="frame" x="140" y="249" width="94" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="L7B-md-SGh"/>
-                                    <constraint firstAttribute="width" constant="94" id="zuN-oX-sUw"/>
+                                    <constraint firstAttribute="width" constant="94" id="ef1-Wi-O0h"/>
                                 </constraints>
                                 <state key="normal" title="playAction"/>
                                 <connections>
@@ -30,49 +33,80 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scQ-cW-pv4">
+                                <rect key="frame" x="169" y="318" width="37" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dd9-iq-gCo"/>
+                                    <constraint firstAttribute="width" constant="37" id="mAF-dp-k7D"/>
+                                </constraints>
                                 <state key="normal" title="close"/>
                                 <connections>
                                     <action selector="closePlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="riH-yk-bWK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pZ-dM-2eP">
-                                <state key="normal" title="jump"/>
-                                <connections>
-                                    <action selector="jumpAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kSS-J1-MsG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Eh-0l-P7S">
-                                <frame key="frameInset" minX="164" minY="180" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Eh-0l-P7S">
+                                <rect key="frame" x="164" y="180" width="46" height="30"/>
                                 <state key="normal" title="顶端"/>
                                 <connections>
                                     <segue destination="1d1-6J-aD5" kind="show" id="tAF-cx-Mqo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpI-K7-Mwb">
-                                <frame key="frameInset" minX="164" minY="107" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpI-K7-Mwb">
+                                <rect key="frame" x="164" y="107" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="URf-aX-MZJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="eIS-eF-bx4"/>
+                                </constraints>
                                 <state key="normal" title="列表"/>
                                 <connections>
                                     <segue destination="99s-3z-ezZ" kind="show" id="YMu-zg-OP3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0L-cK-mX2">
+                                <rect key="frame" x="106" y="356" width="162" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qF7-Tu-3E9"/>
+                                    <constraint firstAttribute="width" constant="162" id="wcx-sr-0ZX"/>
+                                </constraints>
+                                <state key="normal" title="AVPlayerViewController"/>
+                                <connections>
+                                    <action selector="clickAVPlayerVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Leh-4I-37r"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cb-sR-hiL">
+                                <rect key="frame" x="106" y="405" width="162" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="162" id="0g0-15-pwV"/>
+                                    <constraint firstAttribute="height" constant="30" id="1nh-zq-AMK"/>
+                                </constraints>
+                                <state key="normal" title="AVPlayerLayer"/>
+                                <connections>
+                                    <action selector="clickAVPlayerLayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tS6-8K-2Np"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="4pZ-dM-2eP" firstAttribute="leading" secondItem="scQ-cW-pv4" secondAttribute="trailing" constant="99" id="M3T-C4-tO2"/>
-                            <constraint firstItem="scQ-cW-pv4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="58" id="PV5-vt-KNv"/>
-                            <constraint firstItem="teR-2M-r4U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-24.5" id="b5O-0M-G5Y"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="scQ-cW-pv4" secondAttribute="bottom" constant="242" id="dq8-fW-9ji"/>
-                            <constraint firstItem="teR-2M-r4U" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hL9-Qa-uGA"/>
-                            <constraint firstItem="scQ-cW-pv4" firstAttribute="baseline" secondItem="4pZ-dM-2eP" secondAttribute="baseline" id="rgX-0o-ENn"/>
+                            <constraint firstItem="tpI-K7-Mwb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2sY-oO-kqv"/>
+                            <constraint firstItem="0Eh-0l-P7S" firstAttribute="height" secondItem="tpI-K7-Mwb" secondAttribute="height" id="4aO-PR-qmC"/>
+                            <constraint firstItem="g0L-cK-mX2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="61o-dt-Wwf"/>
+                            <constraint firstItem="teR-2M-r4U" firstAttribute="centerX" secondItem="0Eh-0l-P7S" secondAttribute="centerX" id="9Dm-5F-JUU"/>
+                            <constraint firstItem="7cb-sR-hiL" firstAttribute="top" secondItem="g0L-cK-mX2" secondAttribute="bottom" constant="19" id="CzG-KC-R4e"/>
+                            <constraint firstItem="g0L-cK-mX2" firstAttribute="top" secondItem="scQ-cW-pv4" secondAttribute="bottom" constant="8" id="GR1-l1-ZBG"/>
+                            <constraint firstItem="0Eh-0l-P7S" firstAttribute="top" secondItem="tpI-K7-Mwb" secondAttribute="bottom" constant="43" id="Oia-uX-Ttx"/>
+                            <constraint firstItem="0Eh-0l-P7S" firstAttribute="centerX" secondItem="tpI-K7-Mwb" secondAttribute="centerX" id="gCj-2u-rwK"/>
+                            <constraint firstItem="tpI-K7-Mwb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="43" id="l1b-cL-cVU"/>
+                            <constraint firstItem="teR-2M-r4U" firstAttribute="top" secondItem="0Eh-0l-P7S" secondAttribute="bottom" constant="39" id="mLQ-Ai-X7o"/>
+                            <constraint firstItem="7cb-sR-hiL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nW3-lm-c2P"/>
+                            <constraint firstItem="scQ-cW-pv4" firstAttribute="top" secondItem="teR-2M-r4U" secondAttribute="bottom" constant="39" id="oLf-UX-b0n"/>
+                            <constraint firstItem="0Eh-0l-P7S" firstAttribute="width" secondItem="tpI-K7-Mwb" secondAttribute="width" id="qV9-V1-8pw"/>
+                            <constraint firstItem="scQ-cW-pv4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rBg-uf-VhK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FpM-UP-zGI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="974" y="-368"/>
+            <point key="canvasLocation" x="973.60000000000002" y="-368.36581709145429"/>
         </scene>
         <!--listvc-->
         <scene sceneID="trQ-Ey-9qp">
@@ -87,16 +121,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="114" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="evh-Ix-sRN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerCell" rowHeight="160" id="RZG-wi-Lcc" customClass="LLPlayerCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RZG-wi-Lcc" id="3M3-Ng-Htr">
-                                            <frame key="frameInset" width="375" height="159"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="159.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ix-Xg-55j">
+                                                    <rect key="frame" x="23" y="18" width="329" height="123.5"/>
                                                     <state key="normal" title="播放"/>
                                                     <connections>
                                                         <action selector="playAction:" destination="RZG-wi-Lcc" eventType="touchUpInside" id="Xi2-rI-foP"/>

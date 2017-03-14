@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self.navigationController setNavigationBarHidden:NO];
     // Do any additional setup after loading the view.
 }
 
@@ -64,5 +65,8 @@
     return 160.;
 }
 
-
+- (void)dealloc
+{
+    NSLog(@"%s",__func__);
+}
 @end

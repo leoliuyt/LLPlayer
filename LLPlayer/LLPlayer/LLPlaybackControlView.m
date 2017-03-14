@@ -13,6 +13,18 @@ static CGFloat kToolHeight = 40; //标题和底部视图的高度
 
 @interface LLPlaybackControlView()
 
+@property (nonatomic, strong) UIButton *backBtn;
+@property (nonatomic, strong) UIButton *playBtn;
+@property (nonatomic, strong) UIButton *pauseBtn;
+@property (nonatomic, strong) UIButton *fullBtn;
+@property (nonatomic, strong) UIButton *shrinkBtn;
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) UISlider *progressSlider;
+
+@property (nonatomic, strong) UILabel *timeLabel;
+
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIView *bottomView;
 
@@ -308,5 +320,10 @@ static CGFloat kToolHeight = 40; //标题和底部视图的高度
         _timeLabel.font = [UIFont systemFontOfSize:12.];
     }
     return _timeLabel;
+}
+
+- (void)dealloc
+{
+    NSLog(@"%s",__func__);
 }
 @end

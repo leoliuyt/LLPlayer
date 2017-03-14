@@ -31,4 +31,16 @@
     controlView.delegate = self;
     return controlView;
 }
+
+- (void)didClickBackAction:(id)sender
+{
+    if (self.closeBlock) {
+        self.closeBlock();
+    }
+}
+
+- (void)dealloc
+{
+    NSLog(@"%s",__func__);
+}
 @end

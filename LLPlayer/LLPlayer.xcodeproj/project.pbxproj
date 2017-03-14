@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B6B03171E77F5FD00149CCA /* LLAVPlayerLayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6B03161E77F5FD00149CCA /* LLAVPlayerLayerVC.m */; };
 		6B79E9B41D7D488200C578D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9B31D7D488200C578D9 /* main.m */; };
 		6B79E9B71D7D488200C578D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9B61D7D488200C578D9 /* AppDelegate.m */; };
 		6B79E9BA1D7D488200C578D9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9B91D7D488200C578D9 /* ViewController.m */; };
@@ -52,6 +53,8 @@
 		0A9E8D9391AC2D2FB870D83A /* Pods-LLPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLPlayer/Pods-LLPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		1A945B24D31E29CFEACACC2F /* libPods-LLPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0E24BD1D7E99D000EDE56C /* LLPlaybackControlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLPlaybackControlProtocol.h; path = ../LLPlaybackControlProtocol.h; sourceTree = "<group>"; };
+		6B6B03151E77F5FD00149CCA /* LLAVPlayerLayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAVPlayerLayerVC.h; sourceTree = "<group>"; };
+		6B6B03161E77F5FD00149CCA /* LLAVPlayerLayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAVPlayerLayerVC.m; sourceTree = "<group>"; };
 		6B79E9AF1D7D488200C578D9 /* LLPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B79E9B31D7D488200C578D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B79E9B51D7D488200C578D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 				6BDDBE801DB4D37B00BF06B1 /* LLPlayerCell.m */,
 				6BDDBE821DB4D83B00BF06B1 /* LLListViewController.h */,
 				6BDDBE831DB4D83B00BF06B1 /* LLListViewController.m */,
+				6B6B03151E77F5FD00149CCA /* LLAVPlayerLayerVC.h */,
+				6B6B03161E77F5FD00149CCA /* LLAVPlayerLayerVC.m */,
 			);
 			path = LLPlayerDemo;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				6B79E9F01D7D72E800C578D9 /* LLPlaybackControlView.m in Sources */,
 				6BDDBE651DB477E500BF06B1 /* UIView+LL.m in Sources */,
 				6BDDBE811DB4D37B00BF06B1 /* LLPlayerCell.m in Sources */,
+				6B6B03171E77F5FD00149CCA /* LLAVPlayerLayerVC.m in Sources */,
 				6BDDBE621DB4722200BF06B1 /* LLFullScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

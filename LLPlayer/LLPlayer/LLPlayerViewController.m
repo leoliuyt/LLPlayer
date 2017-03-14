@@ -8,7 +8,7 @@
 
 #import "LLPlayerViewController.h"
 #import "LLPlayerView.h"
-
+#import "LLPlaybackControlView.h"
 static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContext;
 
 @interface LLPlayerViewController ()<LLPlaybackControlProtocol>
@@ -70,12 +70,12 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     // Dispose of any resources that can be recreated.
 }
 
-//MARK: 需要重写该方法
+//MARK: 需要重写该方法 如果不重写 就使用默认UI
 - (UIView<LLPlaybackControlViewProtocol> *)controlView {
-//    LLPlaybackControlView *controlView = [[LLPlaybackControlView alloc] init];
-//    controlView.delegate = self;
-//    return controlView;
-    return nil;
+    LLPlaybackControlView *controlView = [[LLPlaybackControlView alloc] init];
+    controlView.delegate = self;
+    return controlView;
+//    return nil;
 }
 
 - (void)dealloc
