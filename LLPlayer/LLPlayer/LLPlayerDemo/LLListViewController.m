@@ -39,13 +39,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LLPlayerCell *cell = (LLPlayerCell *)[tableView dequeueReusableCellWithIdentifier:@"PlayerCell"];
+    WEAKSELF(weakSelf);
     cell.playClick = ^(UIButton *btn){
         NSLog(@"show");
         LLFullScreenViewController *vc = [[LLFullScreenViewController alloc]init];
         vc.bgImage = [LLAppDelegate.window ll_snip];
         vc.originalView = btn;
         LLNavigationController *nav = [[LLNavigationController alloc]initWithRootViewController:vc];
-        [self presentViewController:nav animated:YES completion:nil];
+        [weakSelf presentViewController:nav animated:YES completion:nil];
     };
     if (indexPath.row%4 == 0) {
         cell.playBtn.backgroundColor = [UIColor orangeColor];

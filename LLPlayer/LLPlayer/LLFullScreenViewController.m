@@ -155,7 +155,11 @@ static CGFloat kAnimationDuration = 0.28;
 
 - (void)backAction:(id)sender
 {
-    [self performAnimationClose];
+    if (self.isPortrait) {
+        [self performAnimationClose];
+    } else {
+        [self closeAction:nil];
+    }
 }
 
 - (void)disappearVC:(id)sender
@@ -193,7 +197,8 @@ static CGFloat kAnimationDuration = 0.28;
 //        weakSelf.videoPlayerVC.isPortrait = YES;
 //        [weakSelf.videoPlayerVC playUrl:@"http://video1.ileci.com/word/deceive_s.mp4"];
 //        NSURL *url = [[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"];
-        NSURL *url = [NSURL URLWithString:@"http://video1.ileci.com/word/deceive_s.mp4"];
+//        NSURL *url = [NSURL URLWithString:@"http://video1.ileci.com/word/deceive_s.mp4"];
+        NSURL *url = [NSURL URLWithString:@"http://pl.youku.com/playlist/m3u8?vid=XMTcwNDE3NTgyOA==&type=mp4&ts=1472523895&keyframe=0&ep=dSaTGEyPVcYH7SbfjD8bZX2zJ34IXJZ3kkzC%252F6YXA8VAH6HA6DPcqJ6zTPs%253D&sid=7472523878504122aac97&token=3324&ctype=12&ev=1&oip=2937696939"];
         weakSelf.videoPlayerVC.contentURL = url;
         weakSelf.videoPlayerVC.fullScreenBlock = ^(id sender){
             [weakSelf fullScreenAction:sender];

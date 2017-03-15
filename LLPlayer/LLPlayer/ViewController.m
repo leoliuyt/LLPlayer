@@ -55,6 +55,7 @@
 - (IBAction)clickAVPlayerVC:(id)sender {
     [self playAVPlayerVC];
 }
+
 - (IBAction)clickAVPlayerLayer:(id)sender {
     [self playAVPlayer];
 }
@@ -65,7 +66,7 @@
     self.demoVC.view.frame = CGRectMake(0, 0, 320, 200);
     self.demoVC.videoGravityType = ELayerVideoGravityTypeResizeAspectFill;
     WEAKSELF(weakSelf);
-    self.demoVC.closeBlock = ^(){
+    self.demoVC.backBlock = ^(id sender){
         [weakSelf.demoVC pause];
         [weakSelf.demoVC.view removeFromSuperview];
         weakSelf.demoVC = nil;

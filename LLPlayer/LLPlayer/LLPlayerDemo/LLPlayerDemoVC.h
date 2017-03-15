@@ -10,6 +10,4 @@
 
 @interface LLPlayerDemoVC : LLPlayerViewController
 
-@property (nonatomic, copy) void(^closeBlock)();
-
 @end
