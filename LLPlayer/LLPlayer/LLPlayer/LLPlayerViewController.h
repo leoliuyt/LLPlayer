@@ -11,7 +11,18 @@
 #import "LLPlayerConfigure.h"
 #import "LLPlaybackControlProtocol.h"
 
+typedef NS_ENUM(NSUInteger, ELLPlayViewState) {
+    ELLPlayViewStateSmall,
+    ELLPlayViewStateFull,
+    ELLPlayViewStateAnimating,
+};
+
 @interface LLPlayerViewController : UIViewController
+
+@property (nonatomic, weak) UIView *parentView;
+@property (nonatomic, assign) ELLPlayViewState state;
+@property (nonatomic, assign) CGRect beforeBounds;
+@property (nonatomic, assign) CGPoint beforeCenter;
 
 // 视频显示模式 类似图片的ContentMode
 @property (nonatomic, assign) ELayerVideoGravityType videoGravityType;
