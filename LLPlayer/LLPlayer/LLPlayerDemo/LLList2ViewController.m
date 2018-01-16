@@ -54,12 +54,6 @@
 
 - (void)enterFullscreen
 {
-//    if playView.state != .small {
-//        return
-//    }
-//
-//    let controller = SecondLandscapeRightController()
-//    present(to: controller)
     if(self.playerVC.state != ELLPlayViewStateSmall){
         return;
     }
@@ -77,22 +71,6 @@
         self.playerVC.state = ELLPlayViewStateSmall;
     }];
 }
-
-//func present(to controller: SecondFullScreenController) {
-//    playView.state = .animating
-//    playView.beforeBounds = playView.bounds
-//    playView.beforeCenter = playView.center
-//    playView.parentView = playView.superview
-//
-//
-//    controller.playView = playView
-//    controller.modalPresentationStyle = .fullScreen
-//    controller.transitioningDelegate = self
-//    present(controller, animated: true) {[weak self] in
-//        self?.playView.state = .fullScreen
-//    }
-//    self.controller = controller
-//}
 
 - (void)present:(LLFullViewController *)vc
 {
@@ -125,18 +103,17 @@
     cell.playClick = ^(UIButton *btn){
         __strong typeof (weakCell) strongCell = weakCell;
         NSLog(@"show");
-        
-        self.playerVC.fullScreenBlock = ^(id sender) {
-            if(self.playerVC.state == ELLPlayViewStateSmall){
-                [self enterFullscreen];
+        weakSelf.playerVC.fullScreenBlock = ^(id sender) {
+            if(weakSelf.playerVC.state == ELLPlayViewStateSmall){
+                [weakSelf enterFullscreen];
             }
         };
         
-        self.playerVC.shrinkScreenBlock = ^(id sender) {
-             [self exitFullScreen];
+        weakSelf.playerVC.shrinkScreenBlock = ^(id sender) {
+             [weakSelf exitFullScreen];
         };
-        [strongCell.contentView addSubview: self.playerVC.view];
-        [self.playerVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        [strongCell.contentView addSubview:weakSelf.playerVC.view];
+        [weakSelf.playerVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(strongCell.contentView);
         }];
     };
@@ -167,6 +144,7 @@
 {
     if(!_playerVC){
         _playerVC = [[LLPlayerViewController alloc]init];
+        _playerVC.contentURL = [NSURL URLWithString:@"http://pl-ali.youku.com/playlist/m3u8?vid=XMzMyMjUwMDcwOA%3D%3D&type=flv&ups_client_netip=3a84b648&ups_ts=1516093099&utid=j6zkEkgIZzgCATqEtkjwuG%2F2&ccode=0502&psid=c644b9c3913aacc07f432f5e7f1b5abc&duration=301&expire=18000&ups_key=6a5fbbb17f0f125c561cf79e304e3094"];
     }
     return _playerVC;
 }

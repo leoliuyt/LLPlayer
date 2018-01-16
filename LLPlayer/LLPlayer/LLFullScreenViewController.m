@@ -198,7 +198,7 @@ static CGFloat kAnimationDuration = 0.28;
 //        [weakSelf.videoPlayerVC playUrl:@"http://video1.ileci.com/word/deceive_s.mp4"];
 //        NSURL *url = [[NSBundle mainBundle] URLForResource:@"moments" withExtension:@"mp4"];
 //        NSURL *url = [NSURL URLWithString:@"http://video1.ileci.com/word/deceive_s.mp4"];
-        NSURL *url = [NSURL URLWithString:@"http://pl.youku.com/playlist/m3u8?vid=XMTcwNDE3NTgyOA==&type=mp4&ts=1472523895&keyframe=0&ep=dSaTGEyPVcYH7SbfjD8bZX2zJ34IXJZ3kkzC%252F6YXA8VAH6HA6DPcqJ6zTPs%253D&sid=7472523878504122aac97&token=3324&ctype=12&ev=1&oip=2937696939"];
+        NSURL *url = [NSURL URLWithString:@"http://pl-ali.youku.com/playlist/m3u8?vid=XMzMyMjUwMDcwOA%3D%3D&type=flv&ups_client_netip=3a84b648&ups_ts=1516093099&utid=j6zkEkgIZzgCATqEtkjwuG%2F2&ccode=0502&psid=c644b9c3913aacc07f432f5e7f1b5abc&duration=301&expire=18000&ups_key=6a5fbbb17f0f125c561cf79e304e3094"];
         weakSelf.videoPlayerVC.contentURL = url;
         weakSelf.videoPlayerVC.fullScreenBlock = ^(id sender){
             [weakSelf fullScreenAction:sender];

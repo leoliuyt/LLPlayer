@@ -26,6 +26,7 @@
 {
     return 0.25;
 }
+
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
 {
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
@@ -43,7 +44,6 @@
     toView.center = initialCenter;
     // 根据屏幕方向的不同选择不同的角度
     if([toController isKindOfClass:[LLLandscapeLeftViewController class]]) {
-//        toView.transform = CGAffineTransformRotate(<#CGAffineTransform t#>, <#CGFloat angle#>)
         toView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI_2);
     } else {
         toView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_2);
