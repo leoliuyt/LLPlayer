@@ -24,6 +24,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // 因为 presented 完成后，控制器的view的frame会错乱，需要每次将要展现的时候强制设置一下
+    self.view.frame = [UIScreen mainScreen].bounds;
+}
+
+
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     //    return UIStatusBarStyleLightContent;

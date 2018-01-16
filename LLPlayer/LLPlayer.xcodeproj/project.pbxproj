@@ -17,8 +17,6 @@
 		6B79E9CD1D7D488200C578D9 /* LLPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9CC1D7D488200C578D9 /* LLPlayerTests.m */; };
 		6B79E9D81D7D488200C578D9 /* LLPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9D71D7D488200C578D9 /* LLPlayerUITests.m */; };
 		6B79E9E61D7D4B2A00C578D9 /* moments.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6B79E9E51D7D4B2A00C578D9 /* moments.mp4 */; };
-		6B79E9E91D7D560100C578D9 /* LLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9E81D7D560100C578D9 /* LLPlayerView.m */; };
-		6B79E9EC1D7D597800C578D9 /* LLPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9EB1D7D597800C578D9 /* LLPlayerViewController.m */; };
 		6B79E9F01D7D72E800C578D9 /* LLPlaybackControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B79E9EF1D7D72E800C578D9 /* LLPlaybackControlView.m */; };
 		6B79E9F21D7D7D7100C578D9 /* LLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B79E9F11D7D7D7100C578D9 /* LLPlayer.bundle */; };
 		6BDDBE621DB4722200BF06B1 /* LLFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDDBE611DB4722200BF06B1 /* LLFullScreenViewController.m */; };
@@ -28,6 +26,15 @@
 		6BDDBE841DB4D83B00BF06B1 /* LLListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDDBE831DB4D83B00BF06B1 /* LLListViewController.m */; };
 		9E2FFEA61DB27E2C002DA37D /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2FFEA51DB27E2C002DA37D /* LLNavigationController.m */; };
 		9E2FFEA91DB27E7C002DA37D /* LLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2FFEA81DB27E7C002DA37D /* LLViewController.m */; };
+		9EAAAAC22008F59E00AB82F5 /* LLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAABC2008F59D00AB82F5 /* LLPlayerView.m */; };
+		9EAAAAC32008F59E00AB82F5 /* LLPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAABD2008F59D00AB82F5 /* LLPlayerViewController.m */; };
+		9EAAAAC62008F6CA00AB82F5 /* LLList2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAAC52008F6CA00AB82F5 /* LLList2ViewController.m */; };
+		9EAAAAC92008F9E100AB82F5 /* LLEnterFullScreenTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAAC82008F9E100AB82F5 /* LLEnterFullScreenTransition.m */; };
+		9EAAAACF2008FEC000AB82F5 /* LLLandscapeLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAACE2008FEC000AB82F5 /* LLLandscapeLeftViewController.m */; };
+		9EAAAAD22009018400AB82F5 /* LLLandscapeRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAAD12009018400AB82F5 /* LLLandscapeRightViewController.m */; };
+		9EAAAAD5200901AD00AB82F5 /* LLExitFullScreenTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAAD4200901AD00AB82F5 /* LLExitFullScreenTransition.m */; };
+		9EAAAADB200907D200AB82F5 /* LLFullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAADA200907D200AB82F5 /* LLFullViewController.m */; };
+		9EAAAADE200914A500AB82F5 /* LLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAAADD200914A500AB82F5 /* LLTableViewController.m */; };
 		D1D99152FFE0ADCF685D4042 /* libPods-LLPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A945B24D31E29CFEACACC2F /* libPods-LLPlayer.a */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +59,6 @@
 		02DB67B79D257C3E1D746EAC /* Pods-LLPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLPlayer/Pods-LLPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		0A9E8D9391AC2D2FB870D83A /* Pods-LLPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLPlayer/Pods-LLPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		1A945B24D31E29CFEACACC2F /* libPods-LLPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B0E24BD1D7E99D000EDE56C /* LLPlaybackControlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLPlaybackControlProtocol.h; path = ../LLPlaybackControlProtocol.h; sourceTree = "<group>"; };
 		6B6B03151E77F5FD00149CCA /* LLAVPlayerLayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAVPlayerLayerVC.h; sourceTree = "<group>"; };
 		6B6B03161E77F5FD00149CCA /* LLAVPlayerLayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAVPlayerLayerVC.m; sourceTree = "<group>"; };
 		6B79E9AF1D7D488200C578D9 /* LLPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,10 +78,6 @@
 		6B79E9D71D7D488200C578D9 /* LLPlayerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPlayerUITests.m; sourceTree = "<group>"; };
 		6B79E9D91D7D488200C578D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B79E9E51D7D4B2A00C578D9 /* moments.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = moments.mp4; sourceTree = "<group>"; };
-		6B79E9E71D7D560100C578D9 /* LLPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLPlayerView.h; path = LLPlayer/LLPlayerView.h; sourceTree = SOURCE_ROOT; };
-		6B79E9E81D7D560100C578D9 /* LLPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLPlayerView.m; path = LLPlayer/LLPlayerView.m; sourceTree = SOURCE_ROOT; };
-		6B79E9EA1D7D597800C578D9 /* LLPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLPlayerViewController.h; path = LLPlayer/LLPlayerViewController.h; sourceTree = SOURCE_ROOT; };
-		6B79E9EB1D7D597800C578D9 /* LLPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLPlayerViewController.m; path = LLPlayer/LLPlayerViewController.m; sourceTree = SOURCE_ROOT; };
 		6B79E9ED1D7D61EC00C578D9 /* LLPlayerPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPlayerPrefixHeader.pch; sourceTree = "<group>"; };
 		6B79E9EE1D7D72E800C578D9 /* LLPlaybackControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLPlaybackControlView.h; path = ../LLPlaybackControlView.h; sourceTree = "<group>"; };
 		6B79E9EF1D7D72E800C578D9 /* LLPlaybackControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLPlaybackControlView.m; path = ../LLPlaybackControlView.m; sourceTree = "<group>"; };
@@ -90,11 +92,30 @@
 		6BDDBE801DB4D37B00BF06B1 /* LLPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPlayerCell.m; sourceTree = "<group>"; };
 		6BDDBE821DB4D83B00BF06B1 /* LLListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLListViewController.h; sourceTree = "<group>"; };
 		6BDDBE831DB4D83B00BF06B1 /* LLListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLListViewController.m; sourceTree = "<group>"; };
-		9E2FFEA01DB272BF002DA37D /* LLPlayerConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLPlayerConfigure.h; path = LLPlayer/LLPlayerConfigure.h; sourceTree = SOURCE_ROOT; };
 		9E2FFEA41DB27E2C002DA37D /* LLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLNavigationController.h; path = ../../LLNavigationController.h; sourceTree = "<group>"; };
 		9E2FFEA51DB27E2C002DA37D /* LLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLNavigationController.m; path = ../../LLNavigationController.m; sourceTree = "<group>"; };
 		9E2FFEA71DB27E7C002DA37D /* LLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLViewController.h; path = ../LLViewController.h; sourceTree = "<group>"; };
 		9E2FFEA81DB27E7C002DA37D /* LLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLViewController.m; path = ../LLViewController.m; sourceTree = "<group>"; };
+		9EAAAABC2008F59D00AB82F5 /* LLPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPlayerView.m; sourceTree = "<group>"; };
+		9EAAAABD2008F59D00AB82F5 /* LLPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPlayerViewController.m; sourceTree = "<group>"; };
+		9EAAAABE2008F59D00AB82F5 /* LLPlaybackControlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPlaybackControlProtocol.h; sourceTree = "<group>"; };
+		9EAAAABF2008F59D00AB82F5 /* LLPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPlayerView.h; sourceTree = "<group>"; };
+		9EAAAAC02008F59D00AB82F5 /* LLPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPlayerViewController.h; sourceTree = "<group>"; };
+		9EAAAAC12008F59D00AB82F5 /* LLPlayerConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPlayerConfigure.h; sourceTree = "<group>"; };
+		9EAAAAC42008F6CA00AB82F5 /* LLList2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLList2ViewController.h; sourceTree = "<group>"; };
+		9EAAAAC52008F6CA00AB82F5 /* LLList2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLList2ViewController.m; sourceTree = "<group>"; };
+		9EAAAAC72008F9E100AB82F5 /* LLEnterFullScreenTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEnterFullScreenTransition.h; sourceTree = "<group>"; };
+		9EAAAAC82008F9E100AB82F5 /* LLEnterFullScreenTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEnterFullScreenTransition.m; sourceTree = "<group>"; };
+		9EAAAACD2008FEC000AB82F5 /* LLLandscapeLeftViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLandscapeLeftViewController.h; sourceTree = "<group>"; };
+		9EAAAACE2008FEC000AB82F5 /* LLLandscapeLeftViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLandscapeLeftViewController.m; sourceTree = "<group>"; };
+		9EAAAAD02009018400AB82F5 /* LLLandscapeRightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLandscapeRightViewController.h; sourceTree = "<group>"; };
+		9EAAAAD12009018400AB82F5 /* LLLandscapeRightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLandscapeRightViewController.m; sourceTree = "<group>"; };
+		9EAAAAD3200901AD00AB82F5 /* LLExitFullScreenTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExitFullScreenTransition.h; sourceTree = "<group>"; };
+		9EAAAAD4200901AD00AB82F5 /* LLExitFullScreenTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExitFullScreenTransition.m; sourceTree = "<group>"; };
+		9EAAAAD9200907D200AB82F5 /* LLFullViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFullViewController.h; sourceTree = "<group>"; };
+		9EAAAADA200907D200AB82F5 /* LLFullViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFullViewController.m; sourceTree = "<group>"; };
+		9EAAAADC200914A500AB82F5 /* LLTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTableViewController.h; sourceTree = "<group>"; };
+		9EAAAADD200914A500AB82F5 /* LLTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,13 +178,15 @@
 		6B79E9B11D7D488200C578D9 /* LLPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				9EAAAABB2008F59D00AB82F5 /* LLPlayer */,
 				6BDDBE7B1DB4C2BE00BF06B1 /* LLPlayerDemo */,
-				6BDDBE7A1DB4C2A200BF06B1 /* LLPlayer */,
 				6B79E9E51D7D4B2A00C578D9 /* moments.mp4 */,
 				6B79E9B51D7D488200C578D9 /* AppDelegate.h */,
 				6B79E9B61D7D488200C578D9 /* AppDelegate.m */,
 				6B79E9B81D7D488200C578D9 /* ViewController.h */,
 				6B79E9B91D7D488200C578D9 /* ViewController.m */,
+				9EAAAADC200914A500AB82F5 /* LLTableViewController.h */,
+				9EAAAADD200914A500AB82F5 /* LLTableViewController.m */,
 				6B79E9BB1D7D488200C578D9 /* Main.storyboard */,
 				6B79E9BE1D7D488200C578D9 /* Assets.xcassets */,
 				6B79E9C01D7D488200C578D9 /* LaunchScreen.storyboard */,
@@ -200,19 +223,6 @@
 			path = LLPlayerUITests;
 			sourceTree = "<group>";
 		};
-		6BDDBE7A1DB4C2A200BF06B1 /* LLPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				9E2FFEA01DB272BF002DA37D /* LLPlayerConfigure.h */,
-				6B0E24BD1D7E99D000EDE56C /* LLPlaybackControlProtocol.h */,
-				6B79E9E71D7D560100C578D9 /* LLPlayerView.h */,
-				6B79E9E81D7D560100C578D9 /* LLPlayerView.m */,
-				6B79E9EA1D7D597800C578D9 /* LLPlayerViewController.h */,
-				6B79E9EB1D7D597800C578D9 /* LLPlayerViewController.m */,
-			);
-			path = LLPlayer;
-			sourceTree = "<group>";
-		};
 		6BDDBE7B1DB4C2BE00BF06B1 /* LLPlayerDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +243,8 @@
 				6BDDBE801DB4D37B00BF06B1 /* LLPlayerCell.m */,
 				6BDDBE821DB4D83B00BF06B1 /* LLListViewController.h */,
 				6BDDBE831DB4D83B00BF06B1 /* LLListViewController.m */,
+				9EAAAAC42008F6CA00AB82F5 /* LLList2ViewController.h */,
+				9EAAAAC52008F6CA00AB82F5 /* LLList2ViewController.m */,
 				6B6B03151E77F5FD00149CCA /* LLAVPlayerLayerVC.h */,
 				6B6B03161E77F5FD00149CCA /* LLAVPlayerLayerVC.m */,
 			);
@@ -245,6 +257,29 @@
 				1A945B24D31E29CFEACACC2F /* libPods-LLPlayer.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9EAAAABB2008F59D00AB82F5 /* LLPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				9EAAAABC2008F59D00AB82F5 /* LLPlayerView.m */,
+				9EAAAAC02008F59D00AB82F5 /* LLPlayerViewController.h */,
+				9EAAAABD2008F59D00AB82F5 /* LLPlayerViewController.m */,
+				9EAAAAD9200907D200AB82F5 /* LLFullViewController.h */,
+				9EAAAADA200907D200AB82F5 /* LLFullViewController.m */,
+				9EAAAACD2008FEC000AB82F5 /* LLLandscapeLeftViewController.h */,
+				9EAAAACE2008FEC000AB82F5 /* LLLandscapeLeftViewController.m */,
+				9EAAAAD02009018400AB82F5 /* LLLandscapeRightViewController.h */,
+				9EAAAAD12009018400AB82F5 /* LLLandscapeRightViewController.m */,
+				9EAAAABE2008F59D00AB82F5 /* LLPlaybackControlProtocol.h */,
+				9EAAAABF2008F59D00AB82F5 /* LLPlayerView.h */,
+				9EAAAAC12008F59D00AB82F5 /* LLPlayerConfigure.h */,
+				9EAAAAC72008F9E100AB82F5 /* LLEnterFullScreenTransition.h */,
+				9EAAAAC82008F9E100AB82F5 /* LLEnterFullScreenTransition.m */,
+				9EAAAAD3200901AD00AB82F5 /* LLExitFullScreenTransition.h */,
+				9EAAAAD4200901AD00AB82F5 /* LLExitFullScreenTransition.m */,
+			);
+			path = LLPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,19 +484,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B79E9EC1D7D597800C578D9 /* LLPlayerViewController.m in Sources */,
+				9EAAAAD22009018400AB82F5 /* LLLandscapeRightViewController.m in Sources */,
 				6B79E9BA1D7D488200C578D9 /* ViewController.m in Sources */,
 				9E2FFEA91DB27E7C002DA37D /* LLViewController.m in Sources */,
-				6B79E9E91D7D560100C578D9 /* LLPlayerView.m in Sources */,
 				6BDDBE7E1DB4C4DE00BF06B1 /* LLPlayerDemoVC.m in Sources */,
+				9EAAAAC62008F6CA00AB82F5 /* LLList2ViewController.m in Sources */,
 				6B79E9B71D7D488200C578D9 /* AppDelegate.m in Sources */,
+				9EAAAADB200907D200AB82F5 /* LLFullViewController.m in Sources */,
+				9EAAAAC22008F59E00AB82F5 /* LLPlayerView.m in Sources */,
+				9EAAAACF2008FEC000AB82F5 /* LLLandscapeLeftViewController.m in Sources */,
 				9E2FFEA61DB27E2C002DA37D /* LLNavigationController.m in Sources */,
 				6B79E9B41D7D488200C578D9 /* main.m in Sources */,
+				9EAAAAC32008F59E00AB82F5 /* LLPlayerViewController.m in Sources */,
 				6BDDBE841DB4D83B00BF06B1 /* LLListViewController.m in Sources */,
 				6B79E9F01D7D72E800C578D9 /* LLPlaybackControlView.m in Sources */,
 				6BDDBE651DB477E500BF06B1 /* UIView+LL.m in Sources */,
+				9EAAAAC92008F9E100AB82F5 /* LLEnterFullScreenTransition.m in Sources */,
 				6BDDBE811DB4D37B00BF06B1 /* LLPlayerCell.m in Sources */,
 				6B6B03171E77F5FD00149CCA /* LLAVPlayerLayerVC.m in Sources */,
+				9EAAAAD5200901AD00AB82F5 /* LLExitFullScreenTransition.m in Sources */,
+				9EAAAADE200914A500AB82F5 /* LLTableViewController.m in Sources */,
 				6BDDBE621DB4722200BF06B1 /* LLFullScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
