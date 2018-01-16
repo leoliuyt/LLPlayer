@@ -82,3 +82,5 @@ build
 /*.gcno
 
 # End of https://www.gitignore.io/api/xcode,objective-c
+/LLPlayer/LLPlayer.xcworkspace/xcuserdata/lbq.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+/LLPlayer/LLPlayer.xcworkspace/xcuserdata/lbq.xcuserdatad/UserInterfaceState.xcuserstate
